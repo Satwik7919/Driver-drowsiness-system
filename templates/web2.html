@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Video Feed</title>
+    <style>
+        body {
+            #background-image: url('wp4533001.jpg'); /* Specify the path to your background image */
+            background-size: cover; /* Cover the entire background */
+            background-position: center; /* Center the background image */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Full viewport height */
+            margin: 0;
+            padding: 0;
+        }
+
+        #video_container {
+            width: 640px; /* Width of the video feed */
+            height: 480px; /* Height of the video feed */
+            border: 2px solid black; /* Optional: Add border for visibility */
+        }
+
+        #video_feed {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+    <script>
+        // Function to update image source and refresh every 'interval' milliseconds
+        function updateImage() {
+            const imgElement = document.getElementById('video_feed');
+            imgElement.src = "/video_feed?t=" + new Date().getTime(); // Add timestamp to force refresh
+            setTimeout(updateImage, interval); // Refresh every 'interval' milliseconds
+        }
+
+        const interval = 1000; // Refresh interval in milliseconds (e.g., 1000ms = 1 second)
+        updateImage(); // Initial call to start updating the image
+    </script>
+</head>
+<body>
+    <div id="video_container">
+        <img id="video_feed" src="" width="640" height="480">
+    </div>
+</body>
+</html>
